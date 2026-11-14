@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>النماذج</title>
+  <title>Maquettes</title>
   <link rel="icon" href="data:," />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" />
   <style>
     /* Simple chooser for the three drafts */
     :root { --bg: #0d1116; --card: #161c24; --fg: #eef2f6; --muted: #9aa6b2; --accent: #7fd1c7; }
     * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Noto Kufi Arabic", system-ui, sans-serif;
+    body { margin: 0; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif;
            padding: 48px max(16px, env(safe-area-inset-right, 0px)) 64px max(16px, env(safe-area-inset-left, 0px)); }
     main { max-width: 1040px; margin: 0 auto; }
     h1 { font-size: 2rem; margin: 0 0 8px; }
@@ -20,27 +20,27 @@
              color: inherit; text-decoration: none; border: 1px solid #ffffff14; transition: border-color .2s, transform .2s; }
     a.card:hover { border-color: var(--accent); transform: translateY(-3px); }
     .tag { color: var(--accent); font-weight: 600; font-size: .85rem; }
-    .title { font-size: 1.6rem; font-weight: 700; direction: ltr; text-align: right; }
+    .title { font-size: 1.6rem; font-weight: 700;  }
     .card p { margin: 0; color: var(--muted); line-height: 1.8; font-size: .95rem; }
     .go { margin-top: auto; padding-top: 8px; font-weight: 600; }
   </style>
 </head>
 <body>
   <main>
-    <h1>نماذج: شركة تطوير برمجيات</h1>
-    <p class="lead">نفس المشهد (السماء، الجسر، الشوارع، الأشجار) ونفس الحركة. يتغيّر الاسم والنصوص والخدمات فقط. افتح كل نموذج ومرّر للأسفل.</p>
+    <h1>Maquettes : studio de développement</h1>
+    <p class="lead">Même décor (ciel, pont, rues, arbres) et même animation. Seuls le nom, les textes et les services changent. Ouvrez chaque maquette et faites défiler.</p>
     <div class="grid">
       <a class="card" href="a/">
-        <span class="tag">نموذج A</span>
-        <span class="title">نبني · استوديو الجسر</span>
-        <p>فكرة "الجسر بين فكرتك والبرنامج". البطاقات = الخدمات: مواقع، تطبيقات جوال، تصميم واجهات، سحابة، ذكاء اصطناعي.</p>
-        <span class="go">افتح النموذج ←</span>
+        <span class="tag">Maquette A</span>
+        <span class="title">BÂTIR · Studio Le Pont</span>
+        <p>« Le pont entre votre idée et le logiciel ». Cartes : les services (web, mobile, design, cloud, IA).</p>
+        <span class="go">Ouvrir →</span>
       </a>
       <a class="card" href="b/">
-        <span class="tag">نموذج B</span>
-        <span class="title">كود · مسار للبرمجيات</span>
-        <p>فكرة "كود يجري مثل النهر". البطاقات = أنواع المشاريع: متجر، حجوزات، لوحة تحكم، تطبيق طلبات، موقع شركة.</p>
-        <span class="go">افتح النموذج ←</span>
+        <span class="tag">Maquette B</span>
+        <span class="title">CODE · Rivière Dev</span>
+        <p>« Un code qui coule comme une rivière ». Cartes : types de projets (e-commerce, réservation, SaaS, commande, vitrine).</p>
+        <span class="go">Ouvrir →</span>
       </a>
     </div>
   </main>
