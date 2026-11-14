@@ -1,0 +1,101 @@
+/* ---------- Living scenery: clouds, trees, river ----------
+   Moving layers animate transform/opacity only, inside boxes cropped to the
+   area that actually moves, with static masks: cheap to composite at 60fps. */
+
+:root {
+  --wind: 1;              /* global strength; 0 freezes the scene */
+  --flow-far: 64s;        /* river glints, far bank */
+  --flow-near: 38s;       /* river glints, near water */
+  --cloud-high: 170s;
+  --cloud-low: 115s;
+}
+
+/* Overlays copy their source image's box and scroll transform, but never its
+   filter: they are hidden while the scene is blurred (see scenery.js). */
+.scene-fx.scene-fx { pointer-events: none; aspect-ratio: 16 / 9; height: auto; filter: none; }
+.fx-crop {
+  position: absolute; overflow: hidden;
+  left: calc(var(--x) * 1%); top: calc(var(--y) * 1%);
+  width: calc(var(--w) * 1%); height: calc(var(--h) * 1%);
+  -webkit-mask: var(--mask) 0 0 / 100% 100% no-repeat;
+          mask: var(--mask) 0 0 / 100% 100% no-repeat;
+}
+.fx-crop > i { position: absolute; will-change: transform; }
+
+.fx-bazaar-off .bazaar-fx, .fx-sky-off .sky-fx { visibility: hidden; }
+/* At rest every scene filter is the identity: drop it so no extra pass is composited */
+.fx-calm .sky-img, .fx-calm .back-img { filter: none; }
+
+/* Sky: the photographed clouds drift slowly, soft wisps cross in front */
+.sky-img { animation: sky-drift 140s ease-in-out infinite alternate; }
+@keyframes sky-drift {
+  from { transform: scale(1.06) translate3d(-1.6%, 0, 0); }
+  to   { transform: scale(1.06) translate3d(1.6%, -0.6%, 0); }
+}
+.sky-fx { position: absolute; inset: 0 0 35% 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.sky-fx > i {
+  position: absolute; left: 0; width: 200%;
+  background: url("img/fx-clouds.png") repeat-x 0 0 / 50% 100%;
+  will-change: transform;
+}
+.sky-fx > .cloud-high { top: -6%; height: 90%; opacity: 0.85; animation: drift var(--cloud-high) linear infinite; }
+.sky-fx > .cloud-low  { top: 25%; height: 70%; opacity: 0.5; background-size: 25% 100%; background-position: 37% 0;
+                        animation: drift var(--cloud-low) linear infinite; }
+
+/* Wind and water share one direction: left to right */
+@keyframes drift {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+/* River: glints slide over the water only */
+.river-fx .fx-crop { --x: 0; --y: 78.889; --w: 100; --h: 21.111; --mask: url("img/mask-river.png"); }
+.river-fx i { left: 0; width: 200%; background: url("img/fx-glints.png") repeat; }
+.river-fx .flow-far {
+  top: 0; height: 45%; background-size: 12.5% 100%;
+  animation: drift var(--flow-far) linear infinite, twinkle 5.5s ease-in-out infinite alternate;
+}
+.river-fx .flow-near {
+  top: 30%; height: 72%; background-size: 25% 100%; background-position: 0 40%;
+  animation: drift var(--flow-near) linear infinite, twinkle 4.2s ease-in-out -2s infinite alternate;
+}
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to   { opacity: 0.68; }
+}
+
+/* Trees: a masked copy of the foliage sways a couple of pixels in uneven gusts */
+.trees-fx i {
+  left: calc(-100% * var(--x) / var(--w)); top: calc(-100% * var(--y) / var(--h));
+  width: calc(10000% / var(--w)); height: calc(10000% / var(--h));
+  background: var(--fx-src) 0 0 / 100% 100% no-repeat;
+}
+.bazaar-trees .fx-crop { --x: 0; --y: 28.889; --w: 100; --h: 52.778; --mask: url("img/mask-bazaar-trees.png"); }
+.left-trees .fx-crop   { --x: 0; --y: 30.185; --w: 29.271; --h: 69.815; --mask: url("img/mask-left-trees.png"); }
+.right-trees .fx-crop  { --x: 83.229; --y: 41.111; --w: 16.771; --h: 35.185; --mask: url("img/mask-right-trees.png"); }
+
+.bazaar-trees i { animation: sway-far 7.3s ease-in-out infinite; }
+.left-trees i   { animation: sway-near 6.1s ease-in-out infinite; }
+.right-trees i  { animation: sway-near 6.8s ease-in-out -2.4s infinite; }
+
+@keyframes sway-far {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  18% { transform: translate3d(calc(1.4px * var(--wind)), calc(-0.3px * var(--wind)), 0); }
+  32% { transform: translate3d(calc(0.4px * var(--wind)), 0, 0); }
+  52% { transform: translate3d(calc(1.9px * var(--wind)), calc(-0.4px * var(--wind)), 0); }
+  68% { transform: translate3d(calc(0.2px * var(--wind)), 0, 0); }
+  84% { transform: translate3d(calc(1px * var(--wind)), calc(-0.2px * var(--wind)), 0); }
+}
+@keyframes sway-near {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  22% { transform: translate3d(calc(2.4px * var(--wind)), calc(-0.5px * var(--wind)), 0); }
+  40% { transform: translate3d(calc(0.6px * var(--wind)), 0, 0); }
+  58% { transform: translate3d(calc(3px * var(--wind)), calc(-0.6px * var(--wind)), 0); }
+  76% { transform: translate3d(calc(0.8px * var(--wind)), calc(-0.1px * var(--wind)), 0); }
+}
+
+/* "Reduce motion" on the device: the scene stays still */
+@media (prefers-reduced-motion: reduce) {
+  .sky-img { animation: none; }
+  .sky-fx, .river-fx, .trees-fx { display: none; }
+}
