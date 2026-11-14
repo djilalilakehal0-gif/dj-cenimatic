@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>النماذج</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" />
+  <style>
+    /* Simple chooser for the three drafts */
+    :root { --bg: #0d1116; --card: #161c24; --fg: #eef2f6; --muted: #9aa6b2; --accent: #7fd1c7; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Noto Kufi Arabic", system-ui, sans-serif;
+           padding: 48px max(16px, env(safe-area-inset-right, 0px)) 64px max(16px, env(safe-area-inset-left, 0px)); }
+    main { max-width: 1040px; margin: 0 auto; }
+    h1 { font-size: 2rem; margin: 0 0 8px; }
+    .lead { color: var(--muted); margin: 0 0 32px; line-height: 1.8; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    a.card { display: flex; flex-direction: column; gap: 10px; padding: 24px; border-radius: 18px; background: var(--card);
+             color: inherit; text-decoration: none; border: 1px solid #ffffff14; transition: border-color .2s, transform .2s; }
+    a.card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .tag { color: var(--accent); font-weight: 600; font-size: .85rem; }
+    .title { font-size: 1.6rem; font-weight: 700; direction: ltr; text-align: right; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.8; font-size: .95rem; }
+    .go { margin-top: auto; padding-top: 8px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>نماذج: شركة تطوير برمجيات</h1>
+    <p class="lead">نفس المشهد (السماء، الجسر، الشوارع، الأشجار) ونفس الحركة. يتغيّر الاسم والنصوص والخدمات فقط. افتح كل نموذج ومرّر للأسفل.</p>
+    <div class="grid">
+      <a class="card" href="a/">
+        <span class="tag">نموذج A · إنجليزي</span>
+        <span class="title">BRIDGE · Bridge Studio</span>
+        <p>فكرة "الجسر بين فكرتك والبرنامج". البطاقات = الخدمات: مواقع، تطبيقات، تصميم، سحابة، ذكاء اصطناعي.</p>
+        <span class="go">افتح النموذج ←</span>
+      </a>
+      <a class="card" href="b/">
+        <span class="tag">نموذج B · إنجليزي</span>
+        <span class="title">CODE · Riverline Dev</span>
+        <p>فكرة "كود يجري مثل النهر". البطاقات = أنواع المشاريع: متجر، حجوزات، لوحة تحكم، تطبيق طلبات، موقع شركة.</p>
+        <span class="go">افتح النموذج ←</span>
+      </a>
+      <a class="card" href="c/">
+        <span class="tag">نموذج C · عربي</span>
+        <span class="title">نبني · استوديو الجسر</span>
+        <p>نفس فكرة A بالعربية الكاملة، بخط كوفي حديث للعنوان، موجّه للسوق العربي.</p>
+        <span class="go">افتح النموذج ←</span>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
