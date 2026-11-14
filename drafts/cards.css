@@ -1,0 +1,24 @@
+/* Service cards with a poster thumbnail on the right */
+.sight-poster {
+  position: absolute; top: 10px; right: 10px; bottom: 10px; width: 38%;
+  object-fit: cover; object-position: 50% 0; border-radius: 16px;
+  box-shadow: 0 8px 22px rgba(2, 47, 64, 0.22); pointer-events: none;
+}
+.sight-card h3, .sight-card p { right: calc(38% + 26px); max-width: none; }
+.sight-card .sight-kicker { max-width: calc(62% - 40px); }
+.sight-card h3 { white-space: normal; font-size: 22px; line-height: 1.05; }
+.sight-card p { -webkit-line-clamp: 2; }
+
+/* Full-size poster viewer */
+.poster-viewer {
+  position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: rgba(6, 28, 34, 0.78); backdrop-filter: blur(6px); opacity: 0; transition: opacity 220ms ease;
+}
+.poster-viewer.is-open { opacity: 1; }
+.poster-viewer img { max-width: 100%; max-height: 100%; border-radius: 18px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45); }
+.poster-viewer button {
+  position: absolute; top: max(16px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px));
+  width: 48px; height: 48px; border-radius: 999px; border: 0; font-size: 22px; cursor: pointer;
+  color: #111411; background: rgba(253, 241, 225, 0.94);
+}
