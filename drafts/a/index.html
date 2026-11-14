@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bridge Studio</title>
-  <meta name="description" content="Bridge Studio builds web apps, mobile apps and cloud systems." />
+  <title>استوديو الجسر</title>
+  <meta name="description" content="استوديو الجسر لتطوير المواقع وتطبيقات الجوال والأنظمة السحابية." />
   <link rel="icon" href="data:," />
   <link rel="stylesheet" href="../../styles.css" />
   <script src="../../script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&family=Reem+Kufi:wght@600&display=swap" />
+  <style>
+    body, .site-header, .intro-copy, .story-panel, .sight-card { font-family: "Noto Kufi Arabic", system-ui, sans-serif; }
+    .hero-title { font-family: "Reem Kufi", "Noto Kufi Arabic", serif; letter-spacing: 0; }
+    .story-panel h2 { font-family: "Noto Kufi Arabic", sans-serif; font-weight: 700; line-height: 1.3; }
+    .sight-card { direction: rtl; }
+  </style>
 </head>
 <body>
   <main class="site-shell">
@@ -17,15 +25,15 @@
           <img class="scene-img sky-img" src="https://raft-blast-61784561.figma.site/_assets/v11/16b5007d9c93971e26ffe4e0e3e37946f6bd538c.png" alt="" />
 
           <header class="site-header" aria-label="Primary navigation">
-            <a class="site-logo" href="#cinema">Bridge Studio</a>
+            <a class="site-logo" href="#cinema">استوديو الجسر</a>
             <nav class="site-nav" aria-label="Main menu">
-              <a href="#cinema">Services</a>
-              <a href="#cinema">Process</a>
-              <a href="#cinema">Work</a>
-              <a href="#cinema">Contact</a>
+              <a href="#cinema">الخدمات</a>
+              <a href="#cinema">المنهجية</a>
+              <a href="#cinema">أعمالنا</a>
+              <a href="#cinema">تواصل</a>
             </nav>
             <button class="language-switcher" type="button" aria-label="Change language">
-              <span>EN</span>
+              <span>AR</span>
               <span aria-hidden="true">⌄</span>
             </button>
           </header>
@@ -35,35 +43,35 @@
 
             <section class="sights-slider" aria-label="Services slider">
               <div class="sights-track">
-                <article class="sight-card" tabindex="0" role="button" aria-label="Web Apps">
-                  <span class="sight-kicker">Frontend + Backend</span>
+                <article class="sight-card" tabindex="0" role="button" aria-label="تطوير المواقع">
+                  <span class="sight-kicker">واجهة + خادم</span>
                   <img class="sight-pin" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230438_d526b8b6-8a2e-4e3b-9993-3908acae03a7.png" alt="" />
-                  <h3>Web Apps</h3>
-                  <p>Fast, responsive web platforms built on modern frameworks.</p>
+                  <h3>تطوير المواقع</h3>
+                  <p>منصات ويب سريعة ومتجاوبة بأحدث التقنيات.</p>
                 </article>
-                <article class="sight-card" tabindex="0" role="button" aria-label="Mobile Apps">
-                  <span class="sight-kicker">iOS &amp; Android</span>
+                <article class="sight-card" tabindex="0" role="button" aria-label="تطبيقات الجوال">
+                  <span class="sight-kicker">iOS و Android</span>
                   <img class="sight-pin" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230442_140bc25b-b165-4249-904a-f708bff6970e.png" alt="" />
-                  <h3>Mobile Apps</h3>
-                  <p>Native-feel apps from a single codebase.</p>
+                  <h3>تطبيقات الجوال</h3>
+                  <p>تطبيق واحد يعمل على كل الهواتف بإحساس أصلي.</p>
                 </article>
-                <article class="sight-card" tabindex="0" role="button" aria-label="UI/UX Design">
-                  <span class="sight-kicker">Product design</span>
+                <article class="sight-card" tabindex="0" role="button" aria-label="تصميم الواجهات">
+                  <span class="sight-kicker">تصميم المنتج</span>
                   <img class="sight-pin" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230448_825949c9-ccdb-4857-b4a6-e349eccc9010.png" alt="" />
-                  <h3>UI/UX Design</h3>
-                  <p>Interfaces people understand at first glance.</p>
+                  <h3>تصميم الواجهات</h3>
+                  <p>واجهات يفهمها المستخدم من أول نظرة.</p>
                 </article>
-                <article class="sight-card" tabindex="0" role="button" aria-label="Cloud &amp; DevOps">
-                  <span class="sight-kicker">Infrastructure</span>
+                <article class="sight-card" tabindex="0" role="button" aria-label="السحابة و DevOps">
+                  <span class="sight-kicker">البنية التحتية</span>
                   <img class="sight-pin" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230438_d526b8b6-8a2e-4e3b-9993-3908acae03a7.png" alt="" />
-                  <h3>Cloud &amp; DevOps</h3>
-                  <p>Deployments, CI/CD, and scaling that just work.</p>
+                  <h3>السحابة و DevOps</h3>
+                  <p>نشر وتوسّع وتحديثات تلقائية بلا تعقيد.</p>
                 </article>
-                <article class="sight-card" tabindex="0" role="button" aria-label="AI Integration">
-                  <span class="sight-kicker">Automation</span>
+                <article class="sight-card" tabindex="0" role="button" aria-label="الذكاء الاصطناعي">
+                  <span class="sight-kicker">أتمتة</span>
                   <img class="sight-pin" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230442_140bc25b-b165-4249-904a-f708bff6970e.png" alt="" />
-                  <h3>AI Integration</h3>
-                  <p>Smart features and assistants wired into your product.</p>
+                  <h3>الذكاء الاصطناعي</h3>
+                  <p>مساعدات وميزات ذكية مدمجة في منتجك.</p>
                 </article>
               </div>
             </section>
@@ -76,7 +84,7 @@
             <button class="sight-nav sight-next" type="button" aria-label="Next sight">→</button>
           </div>
 
-          <h1 class="hero-title">BRIDGE</h1>
+          <h1 class="hero-title">نبني</h1>
 
           <img class="scene-img splitframe-img splitframe-left" src="https://raft-blast-61784561.figma.site/_assets/v11/7536d7b60a1fce482cf6edf3f0bffd3bad5d0f8a.png" alt="" />
           <img class="scene-img splitframe-img splitframe-right" src="https://raft-blast-61784561.figma.site/_assets/v11/392db6a6a6b98e868bd7f8d3f55bb719d51e5028.png" alt="" />
@@ -86,36 +94,36 @@
           <div class="shade"></div>
         </div>
 
-        <section class="intro-copy" aria-label="Overview">
-          <p>We build the bridge between your idea and working software: web apps, mobile apps, and cloud systems crafted with care.</p>
+        <section class="intro-copy" aria-label="Overview" dir="rtl">
+          <p>نبني الجسر بين فكرتك وبرنامج يعمل فعلاً: مواقع، تطبيقات جوال، وأنظمة سحابية مصمّمة بإتقان.</p>
           <div class="hero-tags" aria-label="Highlights">
-            <span>Web apps</span>
-            <span>Mobile</span>
-            <span>Cloud</span>
+            <span>مواقع ويب</span>
+            <span>تطبيقات جوال</span>
+            <span>حلول سحابية</span>
           </div>
         </section>
 
-        <section class="story-panel story-panel-bridge" aria-label="Process">
-          <h2>Every product needs a solid arch.</h2>
-          <p>We design the architecture first: clean code, tested foundations, and systems that carry real traffic without cracking.</p>
+        <section class="story-panel story-panel-bridge" aria-label="Process" dir="rtl">
+          <h2>كل منتج يحتاج أساساً متيناً.</h2>
+          <p>نبدأ بالهندسة: كود نظيف، اختبارات، وبنية تتحمّل نمو مستخدميك دون أن تتصدّع.</p>
           <dl class="facts">
             <div>
               <dt>01</dt>
-              <dd>Discovery &amp; architecture</dd>
+              <dd>التحليل والتخطيط</dd>
             </div>
             <div>
               <dt>02</dt>
-              <dd>Design, build &amp; test</dd>
+              <dd>التصميم والتطوير والاختبار</dd>
             </div>
           </dl>
         </section>
 
-        <section class="story-panel story-panel-bazaar" aria-label="Launch">
-          <h2>Then we open the streets.</h2>
-          <p>Launch, monitor, and grow. We stay with you after release with support, analytics, and new features.</p>
+        <section class="story-panel story-panel-bazaar" aria-label="Launch" dir="rtl">
+          <h2>ثم نفتح الشوارع للناس.</h2>
+          <p>نطلق المنتج، نراقبه، ونطوّره معك بعد الإطلاق بالدعم والميزات الجديدة.</p>
           <button class="note-button" type="button">
             <span aria-hidden="true">↗</span>
-            <span>Start a project</span>
+            <span>ابدأ مشروعك</span>
           </button>
         </section>
       </div>
