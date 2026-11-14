@@ -39,7 +39,26 @@
   const getScrollDistance = () =>
     clamp(-section.getBoundingClientRect().top, 0, section.offsetHeight - window.innerHeight);
 
-  const setVar = (name, value) => root.style.setProperty(name, value);
+  // Write a CSS variable only when its value changes, to avoid needless style recalcs
+  const varCache = new Map();
+  const setVar = (name, value) => {
+    if (varCache.get(name) === value) return;
+    varCache.set(name, value);
+    root.style.setProperty(name, value);
+  };
+
+  // Bridge grows via scale (GPU) instead of width/bottom (layout); base box measured once
+  const bridgeImg = document.querySelector(".bridge-img");
+  const narrowMq = window.matchMedia("(max-width: 1100px)");
+  const phoneMq = window.matchMedia("(max-width: 640px)");
+  let bridgeBaseW = 0;
+  let bridgeBaseH = 0;
+  const measureBridge = () => {
+    if (!bridgeImg) return;
+    const cs = getComputedStyle(bridgeImg);
+    bridgeBaseW = parseFloat(cs.width) || 0;
+    bridgeBaseH = parseFloat(cs.height) || 0;
+  };
 
   // ---------- Per-frame update ----------
   function update() {
@@ -94,11 +113,8 @@
     setVar("--bazaar-saturation", (1 + frame3.active * 0.18).toFixed(3));
 
     // Shade
-    setVar("--shade-opacity", "1");
+    setVar("--shade-opacity", blurActive.toFixed(3));
     setVar("--shade-z", frame2.active > 0.02 ? "2" : "0");
-    setVar("--shade-top-alpha", (blurActive * 0.465).toFixed(3));
-    setVar("--shade-mid-alpha", (blurActive * 0.42).toFixed(3));
-    setVar("--shade-bottom-alpha", (blurActive * 0.51).toFixed(3));
 
     // Title
     setVar("--title-y", `${(introExit * -210).toFixed(2)}px`);
@@ -107,10 +123,15 @@
 
     // Bridge
     setVar("--bridge-x", `calc(-50% + ${(mouseX * 18).toFixed(2)}px)`);
-    setVar("--bridge-y", `${(mouseY * 8 + sharedHeroY - frame2.exit * 760).toFixed(2)}px`);
-    setVar("--bridge-bottom", `${(5 - frame2.enter * 13).toFixed(3)}vh`);
-    setVar("--bridge-width", `${(67.2 + frame2.enter * 37.8).toFixed(3)}vw`);
-    setVar("--bridge-scale", (1.02 + sharedHeroScale + frame2.exit * 0.46).toFixed(4));
+    // Same result as animating width (67.2→105vw, max 2140px) and bottom (5→-8vh), done with transforms
+    const vw = window.innerWidth / 100;
+    const vh = window.innerHeight / 100;
+    const bridgeTargetW = narrowMq.matches ? bridgeBaseW : Math.min((67.2 + frame2.enter * 37.8) * vw, 2140);
+    const bridgeK = bridgeBaseW ? bridgeTargetW / bridgeBaseW : 1;
+    const bridgeDrop = phoneMq.matches ? 0 : frame2.enter * 13 * vh;
+    const bridgeY = mouseY * 8 + sharedHeroY - frame2.exit * 760 + bridgeDrop - 0.52 * bridgeBaseH * (bridgeK - 1);
+    setVar("--bridge-y", `${bridgeY.toFixed(2)}px`);
+    setVar("--bridge-scale", ((1.02 + sharedHeroScale + frame2.exit * 0.46) * bridgeK).toFixed(4));
 
     // Splitframes
     setVar("--split-left-x", `calc(-50% + ${(-splitDrift * 46).toFixed(3)}vw + ${(mouseX * 22).toFixed(2)}px)`);
@@ -231,6 +252,7 @@
   // ---------- Listeners ----------
   window.addEventListener("scroll", requestTick, { passive: true });
   window.addEventListener("resize", () => {
+    measureBridge();
     updateSightSlider();
     requestTick();
   });
@@ -246,6 +268,14 @@
   if (sightPrev) sightPrev.addEventListener("click", () => moveSightSlider(-1));
   if (sightNext) sightNext.addEventListener("click", () => moveSightSlider(1));
 
+  if (bridgeImg && !bridgeImg.complete) {
+    bridgeImg.addEventListener("load", () => {
+      measureBridge();
+      requestTick();
+    });
+  }
+
+  measureBridge();
   setupSightSlider();
   requestTick();
 })();

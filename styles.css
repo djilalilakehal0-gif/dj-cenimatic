@@ -15,7 +15,7 @@
   --bazaar-y: 20vh;
   --blur-px: 0px; --back-brightness: 1;
   --bazaar-blur-px: 0px; --bazaar-brightness: 1; --bazaar-saturation: 1;
-  --shade-opacity: 1; --shade-z: 2;
+  --shade-opacity: 0; --shade-z: 2;
   --shade-top-alpha: 0; --shade-mid-alpha: 0; --shade-bottom-alpha: 0;
   --blur-tint: 74, 181, 224;
   --title-y: 0px; --title-scale: 1; --title-opacity: 1;
@@ -241,9 +241,10 @@ button { border: 0; font: inherit; }
   inset: 0; z-index: var(--shade-z); pointer-events: none;
   opacity: var(--shade-opacity);
   background: linear-gradient(180deg,
-    rgba(var(--blur-tint), var(--shade-top-alpha)) 0%,
-    rgba(var(--blur-tint), var(--shade-mid-alpha)) 48%,
-    rgba(var(--blur-tint), var(--shade-bottom-alpha)) 100%);
+    rgba(var(--blur-tint), 0.465) 0%,
+    rgba(var(--blur-tint), 0.42) 48%,
+    rgba(var(--blur-tint), 0.51) 100%);
+  will-change: opacity;
 }
 
 /* ---------- Intro copy ---------- */
