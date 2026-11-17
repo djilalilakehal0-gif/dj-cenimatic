@@ -1,0 +1,22 @@
+/* Video framed on the right bank of the river, reflected in the water.
+   Appears with the service cards; transform/opacity only. */
+.river-clip {
+  position: absolute; z-index: 7; margin: 0;
+  right: max(4vw, env(safe-area-inset-right, 0px)); bottom: 15vh;
+  width: clamp(240px, 22vw, 380px); aspect-ratio: 16 / 9;
+  opacity: var(--sights-opacity); visibility: var(--sights-visibility);
+  transform: translate3d(0, calc((1 - var(--sights-opacity)) * 40px), 0);
+  will-change: transform, opacity;
+  -webkit-box-reflect: below 8px linear-gradient(transparent 58%, rgba(255, 255, 255, 0.26));
+}
+.river-clip video {
+  display: block; width: 100%; height: 100%; object-fit: cover; cursor: pointer;
+  border-radius: 18px; border: 1px solid rgba(253, 241, 225, 0.55);
+  box-shadow: 0 18px 40px rgba(2, 47, 64, 0.35);
+  background: #2f6f73;
+}
+.river-clip video:focus-visible { outline: 3px solid #fdf1e1; outline-offset: 4px; }
+
+@media (max-width: 640px) {
+  .river-clip { right: 50%; bottom: 7vh; width: min(78vw, 340px); translate: 50% 0; }
+}
